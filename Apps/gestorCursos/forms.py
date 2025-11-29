@@ -2,9 +2,7 @@
 # '======[Importaciones]============================'
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import Curso
-from Apps.gestorCursos.models import Alumno
-
+from Apps.gestorCursos.models import Alumno, Curso
 
 from django.core import validators
 # '================================================='
@@ -16,134 +14,166 @@ from django.core import validators
 Usuario = get_user_model()
 
 class RegisterCursoForm(forms.Form):
-    codigo = forms.FloatField(validators=[
-        validators.MinValueValidator(0)
-    ])
+    # Definicion + validacion + style + label de campos
+    codigo = forms.CharField(validators=[
+            validators.MinLengthValidator(5),
+            validators.MaxLengthValidator(60)],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ej. CC-JV-203'}),
+        label='Código del curso'
+    )
+
     nombre = forms.CharField(validators=[
-        validators.MinLengthValidator(3),
-        validators.MaxLengthValidator(25)
-    ])
+            validators.MinLengthValidator(3),
+            validators.MaxLengthValidator(25)],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ej. Matemáticas'}),
+        label='Nombre del curso'
+    )
+
     descripcion = forms.CharField(validators=[
-        validators.MinLengthValidator(0),
-        validators.MaxLengthValidator(300)
-    ])
-
-    codigo.label = 'Codigo'
-    nombre.label = 'Nombre'
-    descripcion.label = 'Descripcion'
-
-    codigo.widget.attrs['class'] = 'form-control'
-    nombre.widget.attrs['class'] = 'form-control'
-    descripcion.widget.attrs['class'] = 'form-control'
+            validators.MinLengthValidator(0),
+            validators.MaxLengthValidator(300)],
+        widget=forms.Textarea(attrs={
+            'class': 'form-control',
+            'rows': 3,
+            'placeholder': 'Ej. Este curso trata sobre..'}),
+        label='Descripción del curso'
+    )
 
 class RegisterCursoForm(forms.ModelForm):
     class Meta:
         model = Curso
         fields = ['codigo', 'nombre', 'descripcion']
     
+    # Definicion + validacion + style + label de campos
+    codigo = forms.CharField(validators=[
+            validators.MinLengthValidator(5),
+            validators.MaxLengthValidator(60)],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ej. CC-JV-203'}),
+        label='Código del curso'
+    )
 
     nombre = forms.CharField(validators=[
-        validators.MinLengthValidator(3),
-        validators.MaxLengthValidator(25)
-    ])
+            validators.MinLengthValidator(3),
+            validators.MaxLengthValidator(25)],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ej. Matemáticas'}),
+        label='Nombre del curso'
+    )
+
     descripcion = forms.CharField(validators=[
-        validators.MinLengthValidator(0),
-        validators.MaxLengthValidator(300)
-    ])
-
-    codigo = forms.IntegerField()
-
+            validators.MinLengthValidator(0),
+            validators.MaxLengthValidator(300)],
+        widget=forms.Textarea(attrs={
+            'class': 'form-control',
+            'rows': 3,
+            'placeholder': 'Ej. Este curso trata sobre..'}),
+        label='Descripción del curso'
+    )
 
 
 
 class RegisterAlumnoForm(forms.Form):
 
-    rut = forms.IntegerField()
-    nombre = forms.CharField(validators=[
-        validators.MinLengthValidator(3),
-        validators.MaxLengthValidator(25)
-    ])
-    apellido = forms.CharField(validators=[
-        validators.MinLengthValidator(3),
-        validators.MaxLengthValidator(25)
-    ])
-    
-    rut.label = 'Rut'
-    nombre.label = 'Nombre'
-    apellido.label = 'Apellido'
+    # Definicion + validacion + style + label de campos
+    rut = forms.CharField(validators=[
+            validators.MinLengthValidator(9),
+            validators.MaxLengthValidator(10)],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ej. 12345678-7'}),
+        label='RUT del estudiante'
+    )
 
-    rut.widget.attrs['class'] = 'form-control'
-    nombre.widget.attrs['class'] = 'form-control'
-    apellido.widget.attrs['class'] = 'form-control'
+    nombre = forms.CharField(validators=[
+            validators.MinLengthValidator(3),
+            validators.MaxLengthValidator(50)],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ej. Pancho'}),
+        label='Nombre'
+    )
+
+    apellido = forms.CharField(validators=[
+            validators.MinLengthValidator(3),
+            validators.MaxLengthValidator(50)],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ej. Megidez'}),
+        label='Apellido'
+    )
+
+    fecha_nacimiento = forms.DateField(
+        widget=forms.DateInput(attrs={
+            'class': 'form-control',
+            'type': 'date'}),
+        label='Fecha de nacimiento'
+    )
+
+    #  se encarga de traer todo los objetos ordenarlos  (cursos)  ↓↓
+    cursos_tomado = forms.ModelMultipleChoiceField(queryset=Curso.objects.all().order_by('codigo'),
+        widget=forms.SelectMultiple(attrs={
+            'class': 'form-control'
+        }),
+        label='Cursos disponibles',
+        required=False
+    )
+
 
 
 class RegisterAlumnoForm(forms.ModelForm):
+
+
     class Meta:
-       
         model = Alumno
-        fields = ['rut', 'nombre', 'apellido', 'fecha_nacimiento','cursos_tomado']
-    
+        fields = ['rut','nombre','apellido','fecha_nacimiento','cursos_tomado']
+
+
+    # Definicion + validacion + style + label de campos
+    rut = forms.CharField(validators=[
+            validators.MinLengthValidator(9),
+            validators.MaxLengthValidator(10)],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ej. 12345678-7'}),
+        label='RUT del estudiante'
+    )
 
     nombre = forms.CharField(validators=[
-        validators.MinLengthValidator(3),
-        validators.MaxLengthValidator(25)
-    ])
+            validators.MinLengthValidator(3),
+            validators.MaxLengthValidator(50)],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ej. Pancho'}),
+        label='Nombre'
+    )
+
     apellido = forms.CharField(validators=[
-        validators.MinLengthValidator(3),
-        validators.MaxLengthValidator(25)
-    ])
+            validators.MinLengthValidator(3),
+            validators.MaxLengthValidator(50)],
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ej. Megidez'}),
+        label='Apellido'
+    )
 
-    rut = forms.IntegerField()
+    fecha_nacimiento = forms.DateField(
+        widget=forms.DateInput(attrs={
+            'class': 'form-control',
+            'type': 'date'}),
+        label='Fecha de nacimiento'
+    )
 
+    #  se encarga de traer todo los objetos ordenarlos  (cursos)  ↓↓
+    cursos_tomado = forms.ModelMultipleChoiceField(queryset=Curso.objects.all().order_by('codigo'),
+        widget=forms.SelectMultiple(attrs={
+            'class': 'form-control'}),
+        label='Cursos disponibles'
+    )
 
-
-
-
-
-
-
-
-# from django import forms
-# from .models import  Alumno
-
-# from django.core import validators
-
-
-# class RegisterAlumnoForm(forms.Form):
-
-#     rut = forms.IntegerField()
-#     nombre = forms.CharField(validators=[
-#         validators.MinLengthValidator(3),
-#         validators.MaxLengthValidator(25)
-#     ])
-#     apellido = forms.CharField(validators=[
-#         validators.MinLengthValidator(3),
-#         validators.MaxLengthValidator(25)
-#     ])
-    
-
-#     rut.label = 'Rut'
-#     nombre.label = 'Nombre'
-#     apellido.label = 'Apellido'
-
-#     rut.widget.attrs['class'] = 'form-control'
-#     nombre.widget.attrs['class'] = 'form-control'
-#     apellido.widget.attrs['class'] = 'form-control'
-
-
-      
-# class RegisterAlumnoForm(forms.ModelForm):
-#     class Meta:
-#         model = Alumno
-#         fields = '__all__'
-    
-# # Definicion de campos del fourmulario + validaciones simples
-#     nombre = forms.CharField(validators=[
-#         validators.MinLengthValidator(3),
-#         validators.MaxLengthValidator(25)
-#     ])
-#     apellido = forms.CharField(validators=[
-#         validators.MinLengthValidator(3),
-#         validators.MaxLengthValidator(25)])
-
-#     rut = forms.IntegerField()

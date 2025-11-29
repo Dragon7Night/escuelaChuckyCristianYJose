@@ -54,11 +54,12 @@ def registrarCurso(request):
         if formCursos.is_valid():
 
             curso_instance = formCursos.save(commit=False)
+            curso_instance.creador_curso = request.user
             curso_instance.save()
 
-            formCursos.save()
-            # producto_instance.admin = request.user 
-            # producto_instance.save()
+            # Guarda campos ManyToMany en el form
+            formCursos.save_m2m()
+
             return HttpResponseRedirect(reverse('data_cursos'))
     
     data = {
@@ -70,15 +71,17 @@ def registrarCurso(request):
 # .|----[Editar curso]-------------------------------------------|.
 @login_required(login_url='/landing-page/')
 def editarCurso(request, id_curso):
-    curso = get_object_or_404(CursoModels.Curso, id=id_curso)
-    formCursos = RegisterCursoForm(instance=curso)
+
+    # obtiene el objeto ↓↓↓ o de caso contrario da un Error 404 
+    cursoObject = get_object_or_404(CursoModels.Curso, id=id_curso)
+    formCursos = RegisterCursoForm(instance=cursoObject)
 
     if request.method == 'POST':
-        formCursos = RegisterCursoForm(request.POST, instance=curso)
+        formCursos = RegisterCursoForm(request.POST, instance=cursoObject)
         if formCursos.is_valid():
 
-            curso_instance = formCursos.save(commit=False)
-            curso_instance.save()
+            # curso_instance = formCursos.save(commit=False)
+            # curso_instance.save()
             formCursos.save()
             return HttpResponseRedirect(reverse('data_cursos'))
 
@@ -92,8 +95,8 @@ def editarCurso(request, id_curso):
 @login_required(login_url='/landing-page/')
 def eliminarCurso(request, id_curso):
 
-    curso = get_object_or_404(CursoModels.Curso, id=id_curso)
-    curso.delete()
+    cursoObject = get_object_or_404(CursoModels.Curso, id=id_curso)
+    cursoObject.delete()
     return HttpResponseRedirect(reverse('data_cursos'))
 
 
@@ -113,13 +116,15 @@ def data_alumnos(request):
 # .|----[Registrar alumno]-------------------------------------------|.
 @login_required(login_url='/landing-page/')
 def registrarAlumno(request):
+
     formAlumno = RegisterAlumnoForm() 
-    
+
     if request.method == 'POST':
         formAlumno = RegisterAlumnoForm(request.POST)
         if formAlumno.is_valid():
 
             alumno_instance = formAlumno.save(commit=False)
+            alumno_instance.creador_alumno = request.user
             alumno_instance.save()
 
             formAlumno.save()
@@ -135,15 +140,15 @@ def registrarAlumno(request):
 # .|----[Editar alumno]-------------------------------------------|.
 @login_required(login_url='/landing-page/')
 def editarAlumno(request, id_alumno):
-    alumno = get_object_or_404(CursoModels.Alumno, id=id_alumno)
-    formAlumno = RegisterAlumnoForm(instance=alumno)
+    alumnoObject = get_object_or_404(CursoModels.Alumno, id=id_alumno)
+    formAlumno = RegisterAlumnoForm(instance=alumnoObject)
 
     if request.method == 'POST':
-        formAlumno = RegisterAlumnoForm(request.POST, instance=alumno)
+        formAlumno = RegisterAlumnoForm(request.POST, instance=alumnoObject)
         if formAlumno.is_valid():
 
-            alumno_instance = formAlumno.save(commit=False)
-            alumno_instance.save()
+            # alumno_instance = formAlumno.save(commit=False)
+            # alumno_instance.save()
             formAlumno.save()
             return HttpResponseRedirect(reverse('registrar_alumno'))
 
@@ -156,8 +161,8 @@ def editarAlumno(request, id_alumno):
 # .|----[Eliminar alumno]-------------------------------------------|.
 @login_required(login_url='/landing-page/')
 def eliminarAlumno(request, id_alumno):
-    alumno = get_object_or_404(CursoModels.Alumno, id=id_alumno)
-    alumno.delete()
+    alumnoObject = get_object_or_404(CursoModels.Alumno, id=id_alumno)
+    alumnoObject.delete()
     return HttpResponseRedirect(reverse('data_alumnos'))
 
 

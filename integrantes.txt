@@ -23,13 +23,14 @@ https://docs.djangoproject.com/en/5.2/ref/forms/validation/#cleaning-a-specific-
 
 
 
+STYLE EN Meta DE FORMS (widgets, label)
+https://docs.djangoproject.com/en/5.2/topics/forms/modelforms/#overriding-the-default-fields
 
 
 
+ManyToMany y objetos multiples para cursos talvez PROBAR
+https://docs.djangoproject.com/en/5.2/topics/forms/modelforms/#a-full-example
 
-
-
--
 
 
 

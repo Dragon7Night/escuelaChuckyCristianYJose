@@ -1,0 +1,47 @@
+
+<!-- °=========================° -->
+<!--    °HTML -> Base de carta   -->
+<!-- °=========================° -->
+
+<!-- End Navbar main content -->
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="{% block card_size %}col-12{% endblock %}">
+            <div class="card mb-4">
+
+                <!-- TITULO DE CARD -->
+                <div class="card-header pb-0">
+                    <h6>{% block titulo_card %} {#TITULO BASE CARTA#} {% endblock %}</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+<div class="container-fluid py-4">
+    <div class="row justify-content-center"> <div class="col-12 col-md-8 col-lg-6">
+            
+            <div class="card mb-4">
+                <div class="card-header pb-0 text-center"> <h6>Registro / Formulario</h6>
+                </div>
+                
+                <div class="card-body px-4 pt-4 pb-4"> <form method="post">
+                        {% csrf_token %}
+
+                        {{ formKey.as_p }}
+
+                        <div class="d-grid mt-4">
+                            <input type="submit" class="btn btn-primary" value="{{txtBtn}}">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

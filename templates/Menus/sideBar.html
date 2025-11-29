@@ -9,11 +9,10 @@
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
-            target="_blank">
-            <img src="{% static 'img/logo-ct-dark.png' %}" width="26px" height="26px" class="navbar-brand-img h-100"
-                alt="main_logo">
-            <span class="ms-1 font-weight-bold">Panel de <strong>{{user.rol}}</strong></span>
+        <a class="navbar-brand m-0" href="{% static 'homeMain' %}" target="_blank">
+
+            <h6 class="me-1 font-weight-bold"><i class="ni ni-books text-black font-weight-bolder"></i> Panel de
+                <strong>{{user.rol}}</strong></h6>
         </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -25,7 +24,22 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link active" href="#">
+                <!-- CLASS de active ENFOQUE DE QUE EL USER ESTA EN ESTA SECCION -->
+                <a class="nav-link active" href="{% url 'homeMain' %}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Home</span>
+                </a>
+            </li>
+
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Datos registrados</h6>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'data_alumnos' %}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
@@ -34,8 +48,12 @@
                 </a>
             </li>
 
+            {% if user.is_docent %}
+            {#NO SE MUESTRA NINGUNA DE LAS OPCIONES#}
+
+            {% elif user.is_custom_admin %}
             <li class="nav-item">
-                <a class="nav-link " href="#">
+                <a class="nav-link " href="{% url 'data_cursos' %}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
@@ -44,14 +62,22 @@
                 </a>
             </li>
 
+            {% else %}
+            {#TAMPOCO SE MUESTRA NADA A NINGUN TIPO DE USUARIO QUE NO ESTE DEFINIDO CON UN ROL#}
+            {% endif %}
 
+
+            <!-- VALIDACION DE USUARIOS MEDIANTE ROLES -->
+            {% if user.is_docent %}
+            {#NO SE MUESTRA NINGUNA DE LAS OPCIONES, por restriccion del rol docente#}
+
+            {% elif user.is_custom_admin %}
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Registro de nuevos</h6>
             </li>
 
-
             <li class="nav-item">
-                <a class="nav-link " href="#">
+                <a class="nav-link " href="{% url 'registrar_alumno' %}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-app text-dark text-sm opacity-10"></i>
@@ -60,7 +86,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">
+                <a class="nav-link " href="{% url 'registrar_curso' %}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-world-2 text-dark text-sm opacity-10"></i>
@@ -68,6 +94,9 @@
                     <span class="nav-link-text ms-1">Cursos</span>
                 </a>
             </li>
+            {% else %}
+            {#TAMPOCO SE MUESTRA NADA A NINGUN TIPO DE USUARIO QUE NO ESTE DEFINIDO CON UN ROL#}
+            {% endif %}
 
         </ul>
     </div>
@@ -82,8 +111,49 @@
                 </div>
             </div>
         </div>
-        <a href="{% url 'admin:login' %}" target="_blank"
-            class="btn btn-dark btn-sm w-100 mb-3">Panel de Django</a>
+        <a href="{% url 'admin:login' %}" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">Panel de Django</a>
 
     </div>
 </aside>
+
+
+<!-- 
+
+
+PERMISOS POR ROLES DEFINIDOS PARA LA EVALUACIÓN 
+
+Roles definidos
+
+Administrador: Usuario con privilegios especiales para administrar todos los aspectos del sistema.
+Usuario Normal: Usuario estándar con permisos limitados.
+
++ Notas a conciderar: 
+    > El administrador se definio con el rol de -> Administrador -> is_custom_admin
+    > El usuario normal se definio con el rol de -> Docente -> is_docent
+
+    para mayor comodida en la delimitacion de acciones por los diferentes usuarios que
+    exiten en el sistema
+
+
+.1. CRUD de Alumnos:
+    > Administrador:
+        Crear, Leer, Actualizar y Eliminar alumnos.
+        Acceso completo a todas las funciones relacionadas con alumnos.
+
+    > Usuario Normal:
+        Crear, Leer y Actualizar alumnos.
+        No tiene permisos para eliminar alumnos.
+
+.2. CRUD de Cursos:
+    > Administrador:
+        Crear, Leer, Actualizar y Eliminar cursos. 
+        Acceso completo a todas las funciones relacionadas con cursos.
+
+    > Usuario Normal: No tiene acceso a la gestión de cursos.
+
+.3. Restricciones de Visualización:
+    > Administrador: Tiene la capacidad de ver todos los alumnos, independientemente del creador.
+    > Usuarios Normales: Solo pueden ver los Alumnos que han creado.
+
+
+-->

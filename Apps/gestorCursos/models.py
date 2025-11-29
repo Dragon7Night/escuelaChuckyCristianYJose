@@ -1,4 +1,7 @@
+
+
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
@@ -8,11 +11,13 @@ class Curso(models.Model):
     nombre = models.CharField(max_length=60)
     descripcion = models.CharField(max_length=300)
 
+    creador_curso = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='cursos_creador')
+
     class Meta:
         ordering = ['codigo']
 
     def __str__(self):
-        return f"Curso: {self.nombre} Descripción: {self.descripcion} Codigo de curso: {self.codigo}"
+        return f"Codigo: {self.codigo} - Curso: {self.nombre} - Descrip.: {self.descripcion}"
 
 
 class Alumno(models.Model):
@@ -21,13 +26,15 @@ class Alumno(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     fecha_nacimiento = models.DateField()
-    cursos_tomado = models.ManyToManyField(Curso, related_name='alumnoCursos', blank=True)
+
+    creador_alumno = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='alumnos_creador')
+    cursos_tomado = models.ManyToManyField(Curso, blank=True, related_name='alumnos_cursos')
 
     class Meta:
         ordering = ['apellido']
 
     def __str__(self):
-        return f"Rut: {self.rut} Nombre completo: {self.nombre} {self.apellido} Fecha de nacimiento: {self.fecha_nacimiento}"
+        return f"Rut: {self.rut} - Nombre completo: {self.nombre} {self.apellido} - Fecha de nac.: {self.fecha_nacimiento}"
 
 
 
