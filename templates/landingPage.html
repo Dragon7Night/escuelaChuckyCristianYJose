@@ -1,0 +1,76 @@
+
+{% extends 'Base/base_landing.html' %}
+
+<!-- °===============================================° -->
+<!--    °HTML -> Landing Page - Home principal         -->
+<!-- °===============================================° -->
+
+<!-- TITULO DE LA PAGINA -->
+{% block titulo_pestaña %} Home {% endblock %}
+
+
+<!-- COLUMNA IZQUIERDA – CONTENIDO DEL LANDING -->
+{% block col_izquierda %}
+<div class="col-xl-5 col-lg-6 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
+    <div class="card card-plain">
+        <div class="card-header pb-0 text-start">
+            <h4 class="font-weight-bolder">Bienvenido a la Escuela Chucky C & J</h4>
+            <p class="mb-0">Donde se propone una optima gestion académica en un solo lugar.</p>
+        </div>
+
+        <!-- CONTENIDO PROMOCIONAL -->
+        <div class="card-body">
+            <p class="text-sm">
+                Somos una de las escuelas más prestigiosas de Chile, reconocida por nuestro
+                compromiso con la calidad educativa y el desarrollo integral de nuestros
+                estudiantes.
+            </p>
+
+            <ul class="text-sm">
+                <li>✔️ Gestión moderna de cursos y alumnos</li>
+                <li>✔️ Plataforma intuitiva y completamente optimizada</li>
+                <li>✔️ Herramientas para docentes y administradores</li>
+                <li>✔️ Seguridad y tecnología de primer nivel</li>
+            </ul>
+
+            <p class="text-sm mt-3">
+                Nuestro nuevo sistema digital permite una administracion ágil, transparente y
+                eficiente,
+                potenciando la gestion de toda nuestra institucion educativa.
+            </p>
+
+            <div class="text-center mt-4 mb-1">
+                <a href="{% url 'crearCuentaAdmin' %}" class="btn btn-lg btn-primary w-100">Ingreso de administracion</a>
+            </div>
+            <div class="text-center">
+                <a href="{% url 'crearCuentaDocente' %}" class="btn btn-lg btn-success w-100">Ingreso de docencia</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+<!-- COLUMNA DERECHA – IMAGEN + ESLOGAN -->
+{% block col_derecha %}
+<div
+    class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
+    <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg
+                        d-flex flex-column justify-content-center overflow-hidden"
+        style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg'); background-size: cover;">
+
+        <span class="mask bg-gradient-primary opacity-6"></span>
+
+        <!-- NUEVO ESLOGAN -->
+        <h3 class="mt-5 text-white font-weight-bolder position-relative">
+            "Construyendo un futuro brillante en la administracion"
+        </h3>
+        <p class="text-white position-relative">
+            En la educación y la gestion de cursos y alumnos.
+        </p>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+
+<!-- °==================================° -->
+<!--    °HTML -> Base de Landing page     -->
+<!-- °==================================° -->
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- TITULO DE LA PAGINA -->
+    <title>{% block titulo_pestaña %} {#TITULO BASE#} {% endblock %} | EscuelaChucky</title>
+
+    <!-- IMPORTACIONES GENERALES PARA ESTILOS Y ELEMENTOS -->
+    {% include 'Importaciones/head_general.html'%}
+
+</head>
+
+<body>
+    <div class="container position-sticky z-index-sticky top-0">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- NAVBAR -->
+                <nav
+                    class="navbar navbar-expand-lg blur border-radius-lg top-0 z-index-3 shadow position-absolute mt-4 py-2 start-0 end-0 mx-4">
+                    <div class="container-fluid">
+                        <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3" href="{% url 'landingPage' %}">
+                            Escuela Chucky Cristian y José
+                        </a>
+
+                        <!-- BARRA DE OPCIONES -->
+                        <div class="collapse navbar-collapse" id="navigation">
+                            <ul class="navbar-nav mx-auto">
+
+                                <li class="nav-item">
+                                    <a class="nav-link me-2" href="{% url 'crearCuentaAdmin' %}">
+                                        <i class="fa fa-chart-pie opacity-6  me-1"></i>
+                                        Ingreso administrativo
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link me-2" href="{% url 'crearCuentaDocente' %}">
+                                        <i class="fa fa-user opacity-6  me-1"></i>
+                                        Ingreso docentes
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <!-- BOTON LATERAL -->
+                            <ul class="navbar-nav d-lg-block d-none">
+                                <li class="nav-item">
+                                    <a href="#" class="btn btn-sm mb-0 me-1 btn-primary">Sobre nosotros</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+
+
+    <main class="main-content mt-0">
+        <section>
+            <div class="page-header min-vh-100">
+                <div class="container">
+                    <div class="row">
+                        <!-- COLUMNA IZQUIERDA – CONTENIDO DEL LANDING -->
+                        {% block col_izquierda %} {#CONTENIDO COLUMNA IZQUIERDA#} {% endblock %}
+
+                        <!-- COLUMNA DERECHA – IMAGEN + ESLOGAN -->
+                        {% block col_derecha %} {#CONTENIDO COLUMNA DERECHA#} {% endblock %}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <!-- IMPORTACIONES DE JS Y SCRIPTS -->
+    {% include 'Importaciones/body_general.html' %}
+
+</body>
+
+</html>
+
+
+
+
+
+<!--
+=========================================================
+* Argon Dashboard 3 - v2.1.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard
+* Copyright 2024 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->

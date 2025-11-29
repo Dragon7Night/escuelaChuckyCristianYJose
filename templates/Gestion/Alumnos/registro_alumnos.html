@@ -1,0 +1,60 @@
+{% load static %}
+<!doctype html>
+<html lang="es" class="h-100" data-bs-theme="auto">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{{mainTitle}}</title>
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+
+<body class="d-flex h-100 text-center container {{colorBg}}">
+
+    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+        <header class="mb-5 shadow-lg p-3">
+            <h3 class="float-md-start mb-0">Sistema de Gestión Escolar</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page"
+                    href="{% url 'homeMain' %}">Home</a> <a class="nav-link fw-bold py-1 px-0" href="{% url 'data_alumnos' %}">Alumnos</a>
+                <a class="nav-link fw-bold py-1 px-0" href="{% url 'registraralumno' %}">Registrar Alumno</a>
+      
+            </nav>
+        </header>
+
+        <h1 class="mb-4">{{txtForm}}</h1>
+
+        <div class="row justify-content-center pb-5">
+            <div class="col-12 col-md-8 col-lg-6 pb-5">
+                <div class="card shadow-lg border-radius" style="background-color: #f8f9fa !important; text-align: left;">
+                    <div class="card-body">
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            
+                            {{formKey.as_p}}
+                            
+                            <div class="d-grid mt-4">
+                                <input type="submit" class="btn btn-primary" value="{{txtBtn}}">
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JacYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
