@@ -18,10 +18,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cuenta/', include("django.contrib.auth.urls")),
 
+    
     # ------------------------------------
     #    -URL del LandingPage principal
     # ------------------------------------
     path('landing-page/', ViewsGeneral.landingPage, name='landingPage'),
+
 
     # -----------------------
     #    -URLs de Usuarios
