@@ -1,9 +1,12 @@
 
-
+# '======[Importaciones]============================'
 from django.db import models
 from django.conf import settings
+# '================================================='
 
-# Create your models here.
+# °==============================°
+#    °Modelo -> Gestor de cursos
+# °==============================°
 
 class Curso(models.Model):
 
