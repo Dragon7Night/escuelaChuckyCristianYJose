@@ -29,7 +29,11 @@ def landingPage(request):
 # .|----[Home principal de usuarios]----------------------------|.
 @login_required(login_url='/landing-page/')
 def homeMain(request):
-    return render(request, 'index.html')
+
+    ultimos_alumnos = CursoModels.Alumno.objects.all().order_by('-id')[:4]
+
+    data = {'ultimos_alumnos': ultimos_alumnos}
+    return render(request, 'index.html', data)
 
 
 # !|-|--|-|-|-|-|-|-|> VISTAS DE CURSOS <|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
@@ -129,7 +133,7 @@ def registrarAlumno(request):
 
             formAlumno.save()
             
-            return HttpResponseRedirect(reverse('registrar_alumno'))
+            return HttpResponseRedirect(reverse('data_alumnos'))
     
     data = {
         'formKey': formAlumno
@@ -150,7 +154,7 @@ def editarAlumno(request, id_alumno):
             # alumno_instance = formAlumno.save(commit=False)
             # alumno_instance.save()
             formAlumno.save()
-            return HttpResponseRedirect(reverse('registrar_alumno'))
+            return HttpResponseRedirect(reverse('data_alumnos'))
 
     data = {
         'formKey':formAlumno
@@ -164,16 +168,3 @@ def eliminarAlumno(request, id_alumno):
     alumnoObject = get_object_or_404(CursoModels.Alumno, id=id_alumno)
     alumnoObject.delete()
     return HttpResponseRedirect(reverse('data_alumnos'))
-
-
-
-
-
-
-
-
-
-
-
-
-

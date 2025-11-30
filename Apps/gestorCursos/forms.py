@@ -118,10 +118,8 @@ class RegisterAlumnoForm(forms.Form):
 
     #  se encarga de traer todo los objetos ordenarlos  (cursos)  ↓↓
     cursos_tomado = forms.ModelMultipleChoiceField(queryset=Curso.objects.all().order_by('codigo'),
-        widget=forms.SelectMultiple(attrs={
-            'class': 'form-control'
-        }),
-        label='Cursos disponibles',
+        widget=forms.CheckboxSelectMultiple,
+        label='Marque uno o mas de los cursos disponibles',
         required=False
     )
 
@@ -172,8 +170,8 @@ class RegisterAlumnoForm(forms.ModelForm):
 
     #  se encarga de traer todo los objetos ordenarlos  (cursos)  ↓↓
     cursos_tomado = forms.ModelMultipleChoiceField(queryset=Curso.objects.all().order_by('codigo'),
-        widget=forms.SelectMultiple(attrs={
-            'class': 'form-control'}),
-        label='Cursos disponibles'
+        widget=forms.CheckboxSelectMultiple,
+        label='Marque uno o mas de los cursos disponibles'
     )
 
+# OPCION PARA MULTIPLES OPCIONES (CTRL + CLIC) -> widget=forms.SelectMultiple(attrs={'class': 'form-control'})

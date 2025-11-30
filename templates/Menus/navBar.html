@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- °===================° -->
-<!--    °HTML -> SideBar   -->
+<!--    °HTML -> NavBar   -->
 <!-- °===================° -->
 
 
@@ -41,35 +41,3 @@
     </div>
 </nav>
 
-
-
-
-{% comment %}
-<nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
-    data-scroll="false">
-    <div class="container-fluid py-1 px-3">
-        <nav aria-label="breadcrumb">
-            <h5 class="font-weight-bolder text-white mt-2">Bienvenido/a, {{user.username}}</h5>
-        </nav>
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                <ul class="navbar-nav justify-content-end">
-                    <li class="nav-item d-flex align-items-end">
-
-                        <!-- BOTON DE CERRAR SESION -->
-                        <form method="post" action="{% url 'logout' %}" style="display: inline;"></form>
-                        <button type="submit" class="nav-link justify-content-end text-white font-weight-bold px-0"
-                            style="background: none; border: none; padding: 0;">
-                            <i class="fa-solid fa-right-from-bracket me-2"></i>
-                            <span class="d-sm-inline d-none">Cerrar sesión</span>
-                        </button>
-                        </form>
-                    </li>
-
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</nav>
-{% endcomment %}

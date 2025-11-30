@@ -17,7 +17,7 @@ class Curso(models.Model):
         ordering = ['codigo']
 
     def __str__(self):
-        return f"Codigo: {self.codigo} - Curso: {self.nombre} - Descrip.: {self.descripcion}"
+        return f"Codigo: {self.codigo} - Curso: {self.nombre}"
 
 
 class Alumno(models.Model):
@@ -31,15 +31,7 @@ class Alumno(models.Model):
     cursos_tomado = models.ManyToManyField(Curso, blank=True, related_name='alumnos_cursos')
 
     class Meta:
-        ordering = ['apellido']
+        ordering = ['nombre']
 
     def __str__(self):
         return f"Rut: {self.rut} - Nombre completo: {self.nombre} {self.apellido} - Fecha de nac.: {self.fecha_nacimiento}"
-
-
-
-
-
-
-
-
