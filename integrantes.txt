@@ -11,19 +11,28 @@
     > Fecha de entrega: 03 - 12 - 2025
 -+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 
+Clave de acceso para el registro de Administradores
+-> CLAVE_SECRETA
 
 
 CREDENCIALES de usuarios 
 
 -Administradores
 
-UserName: Admin
+UserName: admin
 Password: qwe123+
+
+UserName: pepe
+Password: qwe123+123
 
 
 -Docentes
 
+UserName: docente
+Password: qwe123+123
 
+UserName: cristofher
+Password: qwe123+123
 
 
 

@@ -10,13 +10,14 @@
 {% block titulo_pestaña %} HOME {% endblock %}
 
 <!-- TITULO DE LA CARTA PRINCIPAL -->
-{% block titulo_card %}Bienvenido al home principal del panel administratativo {% endblock %}
+{% block titulo_card %}Bienvenido al home principal del panel administrativo {% endblock %}
 
 
 <!-- CONTENIDO PRINCIPAL body card  -->
 {% block contenido_body_card %}
 
-<div class="row mt-4 gx-5">
+{% if user.is_custom_admin %}
+<div class="row mt-4 mb-2 gx-5">
 
     {% for alumno in ultimos_alumnos %}
 
@@ -48,23 +49,27 @@
     </div>
 
     {% endfor %}
-
+    
 </div>
 
+{% elif user.is_docent %}
+    {# NO SE MUESTRA NADA #}
+{% else %}
+    {# NO SE MUESTRA NADA TAMPOCO #}
+{% endif %}
 
-<hr>
 <div class="row mt-5">
     <div class="col-lg-7 col-md-12 d-flex flex-column mx-lg-0 mx-auto h-100 justify-content-center">
         <div class="card card-plain">
-            <div class="card-header pb-0 text-start">
-                <h4 class="font-weight-bolder">Bienvenido a la Escuela Chucky C & J</h4>
-                <p class="mb-0">Donde se propone una optima gestion académica en un solo lugar.</p>
-                <p class="text-sm">
-                    En este panel centralizado podrá administrar procesos administrativos, actualizar información
-                    académica,
-                    coordinar actividades internas y mantener el funcionamiento general de la escuela. Nuestro sistema
-                    está pensado para agilizar
-                    su trabajo y ofrecerle una visión completa del estado de la institución.
+            <div class="card-header pb-0 mt-5">
+                <h4 class="font-weight-bolder text-center my-2">Bienvenido a la Escuela Chucky C & J</h4>
+            </div>
+            <div class="card-body">
+                <p class="col-8 mx-auto text-center">Te encuentras en el panel de adminstración academicas.</p>
+                <p class="col-8 mx-auto text-center">
+                    Este panel reúne en un solo lugar una gestión académica óptima y sencilla. 
+                    Aquí podrás administrar cursos, revisar información importante y mantener 
+                    todo organizado de manera práctica y clara.
                 </p>
             </div>
         </div>
@@ -77,17 +82,27 @@
 
             <span class="mask bg-gradient-primary opacity-6"></span>
 
+            {% if user.is_custom_admin %}
             <h3 class="mt-5 text-white font-weight-bolder position-relative">
-                "Bienvenido Administrador"
-            </h3>
+                "Bienvenido Administrador"</h3>
             <p class="text-white position-relative">
-                Gestione el futuro.
-            </p>
+                Gestione el futuro.</p>
+
+            {% elif user.is_docent %}
+            <h3 class="mt-5 text-white font-weight-bolder position-relative">
+                "Bienvenido Docente"</h3>
+            <p class="text-white position-relative">
+                Visualice los cursos.</p>
+            {% else %}
+            <h3 class="mt-5 text-white font-weight-bolder position-relative">
+                "Bienvenido!"</h3>
+            <p class="text-white position-relative">
+                Gestion en un solo punto</p>
+            {% endif %}
+            
         </div>
     </div>
 </div>
 
-
-{% comment %}{% include 'Cards/card_home.html' %} {% endcomment %}
 
 {% endblock %}

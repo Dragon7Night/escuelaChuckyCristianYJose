@@ -8,7 +8,7 @@ from django.conf import settings
 class Curso(models.Model):
 
     codigo = models.CharField(max_length=60)
-    nombre = models.CharField(max_length=60)
+    nombre = models.CharField(max_length=80)
     descripcion = models.CharField(max_length=300)
 
     creador_curso = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='cursos_creador')

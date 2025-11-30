@@ -26,7 +26,7 @@ class RegisterCursoForm(forms.Form):
 
     nombre = forms.CharField(validators=[
             validators.MinLengthValidator(3),
-            validators.MaxLengthValidator(25)],
+            validators.MaxLengthValidator(80)],
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Ej. Matemáticas'}),
@@ -60,7 +60,7 @@ class RegisterCursoForm(forms.ModelForm):
 
     nombre = forms.CharField(validators=[
             validators.MinLengthValidator(3),
-            validators.MaxLengthValidator(25)],
+            validators.MaxLengthValidator(80)],
         widget=forms.TextInput(attrs={
             'class': 'form-control',
             'placeholder': 'Ej. Matemáticas'}),

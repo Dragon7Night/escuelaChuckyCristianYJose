@@ -9,6 +9,8 @@
 <!-- TITULO DE LA PAGINA -->
 {% block titulo_pestaña %} Lista de alumnos {% endblock %}
 
+<!-- TITULO DE LA CARTA -->
+{% block titulo_card %} Datos de los alumnos {% endblock %}
 
 <!-- CONTENIDO PRINCIPAL  -->
 {% block contenido_body_card %}
@@ -20,7 +22,7 @@
             <div class="card mb-4">
 
                 <div class="card-header pb-0">
-                    <h6>{% block titulo_card %} Datos de los alumnos {% endblock %}</h6>
+                    <h6> Lista de alumnos existentes</h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
@@ -34,6 +36,7 @@
                                     <th class="font-weight-bolder">Nombre</th>
                                     <th class="font-weight-bolder">Apellido</th>
                                     <th class="font-weight-bolder">Fecha Nac.</th>
+                                    <th class="font-weight-bolder">Cursos</th>
                                     <th class="font-weight-bolder">Cant. cursos</th>
                                     <th class="font-weight-bolder">Creador</th>
                                     <th class="font-weight-bolder">Acciones</th>
@@ -64,23 +67,9 @@
                                     </td>
 
 
-
-                                    {% comment %}
-                                    {% for curso in alumno.cursos_tomado.all %}
-                                    <td>
-                                        {{ curso.nombre }}{% if not forloop.last %}, {% endif %}
-                                        {% empty %}
-                                        <span class="text-secondary text-xs">Sin cursos inscritos</span>
-                                        {% endfor %}
-                                    </td>
-                                    {% endcomment %}
-
-
-                                    {% comment %}
                                     <td class="text-center">
                                         {{ alumno.cursos_tomado.count }}
                                     </td>
-                                    {% endcomment %}
 
                                     <td>{{alumno.creador_alumno}}</td>
 

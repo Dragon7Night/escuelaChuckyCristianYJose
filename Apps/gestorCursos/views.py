@@ -84,8 +84,6 @@ def editarCurso(request, id_curso):
         formCursos = RegisterCursoForm(request.POST, instance=cursoObject)
         if formCursos.is_valid():
 
-            # curso_instance = formCursos.save(commit=False)
-            # curso_instance.save()
             formCursos.save()
             return HttpResponseRedirect(reverse('data_cursos'))
 
@@ -110,7 +108,19 @@ def eliminarCurso(request, id_curso):
 # .|----[Data alumnos]-------------------------------------------|.
 @login_required(login_url='/landing-page/')
 def data_alumnos(request):
-    alumnoObject = CursoModels.Alumno.objects.all()
+
+    # Filtrado en la visualizacion de datos de los alumnos registrados
+
+    # si el usuario tiene el rol de administrador custom (superUser o staff)
+    # se muestran todos los alumnos sin restricciones
+    if request.user.is_custom_admin:
+        alumnoObject = CursoModels.Alumno.objects.all()
+
+    # de caso contrario al usuarios solo se le mostraran los alumnos registrados
+    # por el propio usuario
+    else:#         FILTRO DE COMPARACION ENTRE EL UserName DEL CREADOR Y DEL USUARIO ACTUAL EN LA SESION
+        alumnoObject = CursoModels.Alumno.objects.filter(creador_alumno=request.user)
+
     data = {
         'alumnoKey':alumnoObject
     }
@@ -151,8 +161,6 @@ def editarAlumno(request, id_alumno):
         formAlumno = RegisterAlumnoForm(request.POST, instance=alumnoObject)
         if formAlumno.is_valid():
 
-            # alumno_instance = formAlumno.save(commit=False)
-            # alumno_instance.save()
             formAlumno.save()
             return HttpResponseRedirect(reverse('data_alumnos'))
 

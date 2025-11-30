@@ -9,6 +9,16 @@
 <!-- TITULO DE LA PAGINA -->
 {% block titulo_pestaña %} Registro de docentes {% endblock %}
 
+<!-- BOTON LATERAL PARA INICIO RAPIDO COMO Docente -->
+{% block btn_lateral %}
+<ul class="navbar-nav d-lg-block d-none">
+    <li class="nav-item">
+        <a href="{% url 'iniciarSesionDocente' %}" class="btn btn-sm mb-0 me-1 bg-gradient-light">Iniciar sesión</a>
+    </li>
+</ul>
+{% endblock %}
+
+
 <!-- TITULO LANDING PAGE -->
 {% block titulo_landing %}¡Bienvenido!{% endblock %}
 

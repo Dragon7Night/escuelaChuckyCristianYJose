@@ -46,11 +46,7 @@
                 </ul>
 
                 <!-- BOTON LATERAL -->
-                <ul class="navbar-nav d-lg-block d-none">
-                    <li class="nav-item">
-                        <a href="{% url 'landingPage' %}" class="btn btn-sm mb-0 me-1 bg-gradient-light">Sobre nosotros</a>
-                    </li>
-                </ul>
+                {% block btn_lateral %} {# BOTON DE LOGIN DINAMICO #} {% endblock %}
             </div>
 
         </div>
@@ -69,7 +65,7 @@
                     <div class="col-lg-5 text-center mx-auto">
                         <h1 class="text-white mb-2 mt-5">{% block titulo_landing %} {#TITULO LANDING #} {% endblock %}</h1>
                         <p class="text-lead text-white">{% block sub_titulo %} {# SUB TITULO LANDING #} {% endblock %}</p>
-                        <p class="text-lead text-warning">{% block sub_titulo2 %} {# SUB TITULO LANDING #} {% endblock %}</p>
+                        <h4 class="text-lead text-warning fw-bold">{% block sub_titulo2 %} {# SUB TITULO LANDING #} {% endblock %}</>
                     </div>
                 </div>
             </div>
@@ -78,7 +74,7 @@
 
         <!-- CONTENIDO PRINCIPAL - Dentro de una carta -->
         <div class="container">
-            <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+            <div class="row mt-lg-n11 mt-md-n11 mt-n11 justify-content-center">
                 <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
                     <div class="card z-index-0">
 
