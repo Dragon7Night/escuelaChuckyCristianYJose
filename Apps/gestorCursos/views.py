@@ -10,8 +10,9 @@ from django.contrib.auth import get_user_model
 from Apps.gestorCursos.forms import RegisterAlumnoForm, RegisterCursoForm
 
 from Apps.gestorCursos import models as CursoModels  
+from Apps.gestorUser import models as UserModels  
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 # '==============================================='
 
 # °==============================°
@@ -27,7 +28,7 @@ def landingPage(request):
     return render(request, 'landingPage.html')
 
 # .|----[Home principal de usuarios]----------------------------|.
-@login_required(login_url='/landing-page/')
+@login_required(login_url='/landing-page/') # <- Requerimiento de login del User
 def homeMain(request):
 
     ultimos_alumnos = CursoModels.Alumno.objects.all().order_by('-id')[:4]
@@ -39,7 +40,8 @@ def homeMain(request):
 # !|-|--|-|-|-|-|-|-|> VISTAS DE CURSOS <|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|
 
 # .|----[Data cursos]-------------------------------------------|.
-@login_required(login_url='/landing-page/')
+@login_required(login_url='/landing-page/') # <- Requerimiento de login del User
+@permission_required(UserModels.User.ROL_ADMIN, login_url='/cursos/home/') # <- Requerimiento de rol especifica del User
 def dataCursos(request):
     cursosObject = CursoModels.Curso.objects.all()
     data = {
@@ -49,7 +51,8 @@ def dataCursos(request):
 
     
 # .|----[Registrar curso]-------------------------------------------|.
-@login_required(login_url='/landing-page/')
+@login_required(login_url='/landing-page/') # <- Requerimiento de login del User
+@permission_required(UserModels.User.ROL_ADMIN, login_url='/cursos/home/') # <- Requerimiento de rol especifica del User
 def registrarCurso(request):
     formCursos = RegisterCursoForm() 
     
@@ -73,7 +76,8 @@ def registrarCurso(request):
 
 
 # .|----[Editar curso]-------------------------------------------|.
-@login_required(login_url='/landing-page/')
+@login_required(login_url='/landing-page/') # <- Requerimiento de login del User
+@permission_required(UserModels.User.ROL_ADMIN, login_url='/cursos/home/') # <- Requerimiento de rol especifica del User
 def editarCurso(request, id_curso):
 
     # obtiene el objeto ↓↓↓ o de caso contrario da un Error 404 
@@ -94,7 +98,8 @@ def editarCurso(request, id_curso):
 
 
 # .|----[Eliminar curso]-------------------------------------------|.
-@login_required(login_url='/landing-page/')
+@login_required(login_url='/landing-page/') # <- Requerimiento de login del User
+@permission_required(UserModels.User.ROL_ADMIN, login_url='/cursos/home/') # <- Requerimiento de rol especifica del User
 def eliminarCurso(request, id_curso):
 
     cursoObject = get_object_or_404(CursoModels.Curso, id=id_curso)
@@ -171,7 +176,8 @@ def editarAlumno(request, id_alumno):
 
 
 # .|----[Eliminar alumno]-------------------------------------------|.
-@login_required(login_url='/landing-page/')
+@login_required(login_url='/landing-page/') # <- Requerimiento de login del User
+@permission_required(UserModels.User.ROL_ADMIN, login_url='/cursos/home/') # <- Requerimiento de rol especifica del User
 def eliminarAlumno(request, id_alumno):
     alumnoObject = get_object_or_404(CursoModels.Alumno, id=id_alumno)
     alumnoObject.delete()

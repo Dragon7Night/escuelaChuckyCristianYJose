@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2025 a las 07:03:07
+-- Tiempo de generación: 01-12-2025 a las 17:35:36
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -204,7 +204,8 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('7sdohd26r2a0y3os7ohef0qstf92i9nl', '.eJxVjEEOwiAQAP_C2ZAV2AoevfcNBNhFqgaS0p6MfzckPeh1ZjJv4cO-Fb93Xv1C4iqUOP2yGNKT6xD0CPXeZGp1W5coRyIP2-XciF-3o_0blNDL2CJGsiqzypAt8oVd5jOBQhchkU08gTJIDiGqKRudIpHWGLI1SWsQny_1nzgx:1vPZ19:JT8r6gtFjwnN3onci0Lcn8HddkFAmAhIq31_9FgI0Hc', '2025-12-14 04:26:35.999621');
+('o6i4h2pk6q56ld0w2jx486gnlo41q3a4', '.eJxVjEEOwiAQAP_C2ZAV2AoevfcNBNhFqgaS0p6MfzckPeh1ZjJv4cO-Fb93Xv1C4iqUOP2yGNKT6xD0CPXeZGp1W5coRyIP2-XciF-3o_0blNDL2CJGsiqzypAt8oVd5jOBQhchkU08gTJIDiGqKRudIpHWGLI1SWsQny_1nzgx:1vQ5VG:rumwYO_HTsBRNuxHCKTgbVsJQH6-bZk7BY9I0SlT1Ho', '2025-12-15 15:07:50.455513'),
+('qph2pbdv7esa22tf0hyp3gp1d0afg002', '.eJxVjEEOwiAQRe_C2pAOUGBcuvcMZBhAqoYmpV0Z765NutDtf-_9lwi0rTVsPS9hSuIsQJx-t0j8yG0H6U7tNkue27pMUe6KPGiX1znl5-Vw_w4q9fqtMWpPbow-s3WYuBREq0wkZdGCyuDcoIExudF4KjZpUzQYxTAQaCri_QHcsDd-:1vQ6KR:egMfaF1-vCKgzQESZia34hU4aNH5WPq1ItkoVQvPZ9U', '2025-12-15 16:00:43.245064');
 
 -- --------------------------------------------------------
 
@@ -232,7 +233,12 @@ INSERT INTO `gestorcursos_alumno` (`id`, `rut`, `nombre`, `apellido`, `fecha_nac
 (4, '12346743-k', 'andres', 'rojas', '2006-05-09', 4),
 (5, '12634723-k', 'Pancho', 'Valenzuela', '1997-01-18', 4),
 (6, '24636356-k', 'Pablo', 'Valenzuela', '1988-07-07', 4),
-(7, '12456635-6', 'kratos', 'John', '1993-06-11', 2);
+(7, '12456635-6', 'kratos', 'John', '1993-06-11', 2),
+(8, '34647124-5', 'Javier', 'Rios', '2025-12-13', 4),
+(9, '12452356-5', 'Daniel', 'Ortiz', '2025-12-12', 4),
+(10, '12748347-4', 'Valentina', 'Gomez', '2025-11-05', 2),
+(11, '12435747-3', 'Adrian', 'Segura', '2025-12-13', 2),
+(12, '12547346-3', 'Felipe', 'Cruces', '2025-12-20', 2);
 
 -- --------------------------------------------------------
 
@@ -274,7 +280,12 @@ INSERT INTO `gestorcursos_alumno_cursos_tomado` (`id`, `alumno_id`, `curso_id`) 
 (21, 7, 3),
 (22, 7, 4),
 (23, 7, 5),
-(24, 7, 6);
+(24, 7, 6),
+(25, 8, 6),
+(26, 9, 5),
+(27, 10, 6),
+(28, 11, 1),
+(29, 12, 5);
 
 -- --------------------------------------------------------
 
@@ -300,7 +311,8 @@ INSERT INTO `gestorcursos_curso` (`id`, `codigo`, `nombre`, `descripcion`, `crea
 (3, 'FG-ER-T945', 'Matematicas', 'Despejar X de la ecuación y creación de formulas', 3),
 (4, 'JD-GD-T342', 'Innovación y emprendimiento I', 'Presentación de un proyecto amigable con el medio ambiente.', 3),
 (5, 'FK-WR-T3952', 'Ingles', 'Presentación de los principales tiempos verbales en ingles', 3),
-(6, 'DF-GE-T4952', 'Back End', 'Presentación del framework Django en combinación con XAMPP y herramientas como Bootstrap y paneles administrativos', 3);
+(6, 'DF-GE-T4952', 'Back End', 'Presentación del framework Django en combinación con XAMPP y herramientas como Bootstrap y paneles administrativos', 3),
+(7, 'AT-UJ-T3245', 'Desarrollo de videojuegos', 'Durante este curso se enseñara el desarrollo de videojuegos utilizando la herramienta de Unity', 1);
 
 -- --------------------------------------------------------
 
@@ -328,10 +340,10 @@ CREATE TABLE `gestoruser_user` (
 --
 
 INSERT INTO `gestoruser_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`, `rol`) VALUES
-(1, 'pbkdf2_sha256$720000$n47AO38pe2DvLHublTOl7z$AcR0IZODLwNVGstiIFnvIGqKjVat5VoZLZyQuWHFmEU=', '2025-11-30 03:41:49.000000', 1, 'admin', '', '', 'admin@ad.cl', 1, 1, '2025-11-30 03:20:44.000000', 'Administrador'),
-(2, 'pbkdf2_sha256$720000$Cwn95qvTqFriPJl8w20x92$XHbGAGEJtbYQwIyXbe3cAV8Lyj3UpFOShPmQOv3G/H0=', '2025-11-30 05:30:20.511229', 0, 'docente', '', '', 'docente@doc.cl', 0, 1, '2025-11-30 04:25:15.641235', 'Docente'),
+(1, 'pbkdf2_sha256$720000$n47AO38pe2DvLHublTOl7z$AcR0IZODLwNVGstiIFnvIGqKjVat5VoZLZyQuWHFmEU=', '2025-12-01 16:00:43.240829', 1, 'admin', '', '', 'admin@ad.cl', 1, 1, '2025-11-30 03:20:44.000000', 'Administrador'),
+(2, 'pbkdf2_sha256$720000$Cwn95qvTqFriPJl8w20x92$XHbGAGEJtbYQwIyXbe3cAV8Lyj3UpFOShPmQOv3G/H0=', '2025-12-01 15:07:50.453260', 0, 'docente', '', '', 'docente@doc.cl', 0, 1, '2025-11-30 04:25:15.641235', 'Docente'),
 (3, 'pbkdf2_sha256$720000$3wYEZdbEbBOo3zymNDu69U$5/iSZ5wz8uyVQYHvoMI1dnDIRR1k+n1OH2v4/j1gUEk=', '2025-11-30 05:33:17.139589', 1, 'pepe', '', '', 'pepe@pe.cl', 1, 1, '2025-11-30 04:31:37.716999', 'Administrador'),
-(4, 'pbkdf2_sha256$720000$APdTpj0gXoBlXjC3BBJHFH$HhYC+Zvy1Lgtk0bjYe+JOOd/KPmHZNt0ts8NQFSgfQc=', '2025-11-30 04:41:03.058538', 0, 'Cristofher', '', '', 'crstofher@cri.cl', 0, 1, '2025-11-30 04:40:47.883236', 'Docente');
+(4, 'pbkdf2_sha256$720000$APdTpj0gXoBlXjC3BBJHFH$HhYC+Zvy1Lgtk0bjYe+JOOd/KPmHZNt0ts8NQFSgfQc=', '2025-12-01 15:02:39.354578', 0, 'Cristofher', '', '', 'crstofher@cri.cl', 0, 1, '2025-11-30 04:40:47.883236', 'Docente');
 
 -- --------------------------------------------------------
 
@@ -500,19 +512,19 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT de la tabla `gestorcursos_alumno`
 --
 ALTER TABLE `gestorcursos_alumno`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `gestorcursos_alumno_cursos_tomado`
 --
 ALTER TABLE `gestorcursos_alumno_cursos_tomado`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `gestorcursos_curso`
 --
 ALTER TABLE `gestorcursos_curso`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `gestoruser_user`

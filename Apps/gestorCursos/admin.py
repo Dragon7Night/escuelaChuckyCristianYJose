@@ -3,7 +3,6 @@
 from django.contrib import admin
 
 from Apps.gestorCursos import models as ModelsCurso
-
 # '================================================='
 
 # °===================================°

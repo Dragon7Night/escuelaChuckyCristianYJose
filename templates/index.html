@@ -23,11 +23,12 @@
 
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
+            <div class="card-head">
+                <p class="text-sm ms-4 mt-2 text-center text-uppercase font-weight-bold">Último Alumno registrado</p>
             <div class="card-body p-3">
                 <div class="row">
                     <div class="col-8">
                         <div class="numbers">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold">ALUMNO REGISTRADO</p>
                             <h5 class="font-weight-bolder">
                                 {{ alumno.nombre }}
                             </h5>
@@ -41,7 +42,9 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
+
     </div>
     {% empty %}
     <div class="col-12">
