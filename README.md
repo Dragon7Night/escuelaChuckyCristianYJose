@@ -75,12 +75,12 @@ Ejemplo:
 ```python
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_django',
-        'USER': 'django_db',
-        'PASSWORD': 'django_pass',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
+        'ENGINE': 'django.db.backends.mysql', # motor de DB usado
+        'NAME': 'db_django', # nombre de la DB
+        'USER': 'django_db', # nombre del usuario
+        'PASSWORD': 'django_pass', # contraseña del usuario
+        'HOST': '127.0.0.1', # direccion del host
+        'PORT': '3306' # puerto 
     }
 }
 ```
