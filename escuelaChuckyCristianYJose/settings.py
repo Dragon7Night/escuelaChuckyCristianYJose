@@ -82,9 +82,11 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ChuckyDB',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'db_django',
+        'USER': 'django_db',
+        'PASSWORD': 'django_pass',
+        'HOST': '127.0.0.1',
+        'PORT': '3306'
     }
 }
 
