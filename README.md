@@ -4,10 +4,10 @@ Escuela Chucky es una aplicación web desarrollada con Django orientada a la adm
 
 ## Características principales
 
-- 👨‍🎓 **Gestión de estudiantes:** Registro y administración de información estudiantil.
-- 🏫 **Administración escolar:** Organización de datos académicos y administrativos.
-- 🗄️ **Persistencia de datos:** Almacenamiento seguro mediante MariaDB/MySQL.
-- 🌐 **Aplicación web Django:** Arquitectura basada en el patrón MVT (Model-View-Template).
+- **Gestión de estudiantes:** Registro y administración de información estudiantil.
+- **Administración escolar:** Organización de datos académicos y administrativos.
+- **Persistencia de datos:** Almacenamiento seguro mediante MariaDB/MySQL.
+- **Aplicación web Django:** Arquitectura basada en el patrón MVT (Model-View-Template).
 
 ---
 
